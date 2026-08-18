@@ -1,0 +1,110 @@
+/* ==========================================================================
+   NØVA LABS — Responsive
+   ========================================================================== */
+
+/* ----- 1440px and below: tighten container a touch ----- */
+@media (max-width: 1440px){
+  :root{ --gutter: 60px; }
+  .hero h1, h1{ font-size: 84px; }
+}
+
+/* ----- 1280px: reduce grids from 4 -> 2 where needed ----- */
+@media (max-width: 1280px){
+  h1{ font-size: 72px; }
+  h2{ font-size: 46px; }
+  .hero-grid{ gap: 40px; }
+  .stats-band{ grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3){ border-left: none; }
+  .stat{ border-bottom: 1px solid var(--border); }
+  .gallery-strip{ grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ----- 1024px: tablet — stack heroes, 2-col cards ----- */
+@media (max-width: 1024px){
+  :root{ --gutter: 40px; }
+  .section{ padding: 100px 0; }
+  h1{ font-size: 60px; }
+  h2{ font-size: 38px; }
+  h3{ font-size: 30px; }
+
+  .nav-links{ display: none; }
+
+  .hero{ min-height: auto; padding: 150px 0 80px; }
+  .hero-grid{ grid-template-columns: 1fr; }
+  .hero-visual{ order: -1; max-width: 420px; margin: 0 auto; }
+  .hero-copy .body-lg{ max-width: 100%; }
+  .hero-meta{ flex-wrap: wrap; gap: 28px 40px; }
+
+  .card-grid{ grid-template-columns: repeat(2, 1fr); }
+  .process-list{ grid-template-columns: repeat(2, 1fr); gap: 48px 32px; }
+  .projects-grid{ grid-template-columns: repeat(2, 1fr); }
+  .gallery-strip{ grid-template-columns: repeat(3, 1fr); }
+  .info-grid{ grid-template-columns: repeat(2, 1fr); }
+
+  .split{ grid-template-columns: 1fr; gap: 48px; }
+  .split-media{ order: -1; }
+
+  .footer-top{ grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+  .footer-brand{ grid-column: 1 / -1; }
+
+  .cta-band{ padding: 64px 40px; }
+}
+
+/* ----- 768px: mobile — hamburger, single column ----- */
+@media (max-width: 768px){
+  h1{ font-size: 46px; }
+  h2{ font-size: 32px; }
+  h3{ font-size: 26px; }
+  .section{ padding: 80px 0; }
+  .section-head{ margin-bottom: 44px; }
+  .section-head--split{ flex-direction: column; align-items: flex-start; gap: 20px; }
+
+  .nav-cta .btn--secondary{ display: none; }
+  .menu-toggle{ display: inline-flex; }
+
+  .page-hero{ padding: 160px 0 60px; }
+  .page-hero--compact{ padding: 150px 0 50px; }
+
+  .hero-actions{ flex-direction: column; align-items: stretch; }
+  .hero-actions .btn{ width: 100%; }
+  .hero-meta{ gap: 24px 32px; }
+  .hero-meta div strong{ font-size: 22px; }
+
+  .card-grid{ grid-template-columns: 1fr; }
+  .process-list{ grid-template-columns: 1fr; gap: 36px; }
+  .stats-band{ grid-template-columns: repeat(2, 1fr); }
+  .projects-grid{ grid-template-columns: 1fr; }
+  .gallery-strip{ grid-template-columns: repeat(2, 1fr); }
+  .info-grid{ grid-template-columns: 1fr; }
+
+  .form-grid{ grid-template-columns: 1fr; }
+
+  .footer-top{ grid-template-columns: 1fr; gap: 36px; padding-bottom: 40px; }
+  .footer-bottom{ flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  .cta-band{ padding: 48px 24px; border-radius: var(--radius-md); }
+  .cta-band .hero-actions{ flex-direction: column; }
+
+  .wa-float{ right: 18px; bottom: 18px; width: 52px; height: 52px; }
+}
+
+/* ----- 480px: small phones ----- */
+@media (max-width: 480px){
+  :root{ --gutter: 22px; }
+  h1{ font-size: 38px; }
+  h2{ font-size: 28px; }
+  .btn{ padding: 16px 24px; font-size: 14px; }
+  .hero-meta{ gap: 20px 28px; }
+  .stats-band{ grid-template-columns: 1fr; }
+  .stat{ border-left: none; border-top: 1px solid var(--border); }
+  .stat:first-child{ border-top: none; }
+  .gallery-strip{ grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .logo{ font-size: 16px; }
+}
+
+/* ----- 375px: smallest supported ----- */
+@media (max-width: 375px){
+  h1{ font-size: 34px; }
+  .section{ padding: 64px 0; }
+  .cta-band h2{ font-size: 26px; }
+}

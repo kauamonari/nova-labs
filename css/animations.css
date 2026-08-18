@@ -1,0 +1,102 @@
+/* ==========================================================================
+   NØVA LABS — Animations
+   ========================================================================== */
+
+/* --- Reveal on scroll ---
+   Progressive enhancement: content is visible by default so it never
+   depends on JavaScript running. Only once the "js" class (set by an
+   inline script in <head>, before first paint) is present do reveal
+   elements start hidden and animate in via IntersectionObserver. This
+   avoids permanently-invisible content if a script fails to load, is
+   blocked, or a browser doesn't support IntersectionObserver. */
+[data-reveal]{
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.js [data-reveal]{
+  opacity: 0;
+  transform: translateY(24px);
+}
+.js [data-reveal].is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal-delay="1"]{ transition-delay: .08s; }
+[data-reveal-delay="2"]{ transition-delay: .16s; }
+[data-reveal-delay="3"]{ transition-delay: .24s; }
+[data-reveal-delay="4"]{ transition-delay: .32s; }
+
+/* --- Fade only --- */
+[data-reveal="fade"]{ transform: none; }
+
+/* --- Hero entrance sequence --- */
+@keyframes riseIn{
+  from{ opacity: 0; transform: translateY(28px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.hero-copy .eyebrow{ animation: riseIn .7s var(--ease) both; }
+.hero-copy h1{ animation: riseIn .8s var(--ease) .08s both; }
+.hero-copy .body-lg{ animation: riseIn .8s var(--ease) .16s both; }
+.hero-actions{ animation: riseIn .8s var(--ease) .24s both; }
+.hero-meta{ animation: riseIn .8s var(--ease) .32s both; }
+.hero-visual{ animation: heroScale 1s var(--ease) .1s both; }
+
+@keyframes heroScale{
+  from{ opacity: 0; transform: scale(.92); }
+  to{ opacity: 1; transform: scale(1); }
+}
+
+/* --- Perception grid: signature ambient motion in hero --- */
+@keyframes driftGlow{
+  0%, 100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-2%, 2%) scale(1.05); }
+}
+.hero-bg-glow{ animation: driftGlow 14s ease-in-out infinite; }
+
+@keyframes pulseNode{
+  0%, 100%{ opacity: .35; }
+  50%{ opacity: 1; }
+}
+.node-pulse{ animation: pulseNode 3.4s ease-in-out infinite; }
+.node-pulse.delay-1{ animation-delay: .6s; }
+.node-pulse.delay-2{ animation-delay: 1.2s; }
+.node-pulse.delay-3{ animation-delay: 1.8s; }
+
+@keyframes dashFlow{
+  to{ stroke-dashoffset: -240; }
+}
+.line-flow{
+  stroke-dasharray: 6 10;
+  animation: dashFlow 10s linear infinite;
+}
+
+/* --- Marquee (optional ambient strip) --- */
+@keyframes marquee{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+/* --- Loading state for form submit --- */
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+.btn.is-loading .spinner{
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  animation: spin .6s linear infinite;
+}
+
+/* --- Respect reduced motion --- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal]{
+    opacity: 1;
+    transform: none;
+  }
+}

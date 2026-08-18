@@ -61,10 +61,22 @@ function initHeaderScrollState(){
 
 /* Current-page nav highlight */
 function initActiveNav(){
-  const path = window.location.pathname.split("/").pop() || "index.html";
+  // Normalize both the current URL and each link's href so this works
+  // whether the server rewrites /pagina -> pagina.html (Hostinger with
+  // .htaccess) or the raw .html filename is still in the address bar.
+  const normalize = (path) => {
+    let p = path.split("?")[0].split("#")[0];
+    p = p.replace(/\.html$/i, "");
+    p = p.replace(/\/index$/i, "/");
+    if (p.length > 1) p = p.replace(/\/$/, "");
+    return p || "/";
+  };
+
+  const current = normalize(window.location.pathname);
+
   document.querySelectorAll("[data-nav-link]").forEach((link) => {
-    const href = link.getAttribute("href");
-    if (href === path || (path === "" && href === "index.html")) {
+    const href = normalize(link.getAttribute("href"));
+    if (href === current) {
       link.classList.add("is-active");
     }
   });

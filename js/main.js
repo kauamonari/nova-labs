@@ -67,9 +67,12 @@ function initActiveNav(){
   const normalize = (path) => {
     let p = path.split("?")[0].split("#")[0];
     p = p.replace(/\.html$/i, "");
-    p = p.replace(/\/index$/i, "/");
     if (p.length > 1) p = p.replace(/\/$/, "");
-    return p || "/";
+    // The homepage is served at "/", "/index", and "/inicio" alike —
+    // treat them as the same page so the "Início" link highlights
+    // correctly no matter which URL the visitor is actually on.
+    if (p === "" || p === "/" || p === "/index" || p === "/inicio") return "/inicio";
+    return p;
   };
 
   const current = normalize(window.location.pathname);

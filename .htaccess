@@ -3,22 +3,27 @@
 # Compatible with Apache / Hostinger shared hosting
 # ============================================================
 
+# The homepage file is inicio.html, not index.html — this makes
+# novalabsbr.com/ (no path at all) serve it correctly.
+DirectoryIndex inicio.html
+
 RewriteEngine On
 
-# 1) If someone requests /pagina.html directly, redirect (301) to /pagina
+# 1) Old /index or /index.html links -> redirect to /inicio
+RewriteCond %{THE_REQUEST} /index(\.html)?[\s?] [NC]
+RewriteRule ^index(\.html)?$ /inicio [R=301,L]
+
+# 2) If someone requests /pagina.html directly, redirect (301) to /pagina
 #    (avoids duplicate content: novalabsbr.com/servicos.html vs /servicos)
 RewriteCond %{THE_REQUEST} /([^.]+)\.html[\s?] [NC]
 RewriteRule ^ /%1 [NC,L,R=301]
 
-# 2) Internally serve the .html file when the clean URL is requested
+# 3) Internally serve the .html file when the clean URL is requested
 #    (the visitor never sees .html in the address bar)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^([^.]+)$ $1.html [NC,L]
 
-# 3) /index should always resolve to the root domain
-RewriteCond %{THE_REQUEST} /index[\s?] [NC]
-RewriteRule ^index$ / [R=301,L]
-
 # 4) Custom 404 (optional — remove if you don't have a 404.html)
 # ErrorDocument 404 /404.html
+

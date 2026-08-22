@@ -282,20 +282,13 @@ p{ margin: 0; }
   display: flex;
   flex-direction: column;
   padding: 22px var(--gutter) 40px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   transform: translateY(-100%);
+  transition: transform .35s var(--ease);
   visibility: hidden;
-  /* Close: wait for the slide-up to finish before hiding (visibility
-     delay matches the transform duration). Open (below) overrides
-     this so visibility flips instantly and the slide-down is visible
-     from the very first frame. */
-  transition: transform .35s var(--ease), visibility 0s linear .35s;
 }
 .mobile-nav.is-open{
   transform: translateY(0);
   visibility: visible;
-  transition: transform .35s var(--ease), visibility 0s linear 0s;
 }
 .mobile-nav-top{
   display: flex;

@@ -85,31 +85,9 @@ function initActiveNav(){
   });
 }
 
-/* Smooth-scroll to a #hash target on page load (e.g. arriving at
-   /orcamento#briefing-do-projeto from another page). Browsers jump
-   there instantly by default — this makes the landing feel intentional
-   instead of jarring, and accounts for the fixed header via the
-   target's scroll-margin-top in CSS. */
-function initHashSmoothScroll(){
-  if (!window.location.hash) return;
-  let target;
-  try {
-    target = document.querySelector(window.location.hash);
-  } catch (e) {
-    return; // malformed hash, ignore
-  }
-  if (!target) return;
-
-  window.scrollTo(0, 0);
-  window.setTimeout(() => {
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 80);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   initWhatsAppLinks();
   initContactFields();
   initHeaderScrollState();
   initActiveNav();
-  initHashSmoothScroll();
 });

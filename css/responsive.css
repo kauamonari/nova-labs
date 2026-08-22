@@ -59,6 +59,7 @@
   .section-head{ margin-bottom: 44px; }
   .section-head--split{ flex-direction: column; align-items: flex-start; gap: 20px; }
 
+  .nav-cta .btn--secondary{ display: none; }
   .menu-toggle{ display: inline-flex; }
 
   .page-hero{ padding: 160px 0 60px; }

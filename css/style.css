@@ -39,7 +39,19 @@
 
 /* --- Reset --- */
 *, *::before, *::after{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
+html{
+  scroll-behavior: smooth;
+  /* Disable Chrome/Android's automatic font-boosting ("text
+     autosizing"). Without this, the browser can inflate heading text
+     on some pages (long headlines, certain column widths) well
+     beyond the CSS font-size, breaking layout — the fixed header's
+     hamburger button gets pushed out of view, text overflows the
+     viewport horizontally, etc. Manually pinch-zooming resets the
+     browser's internal calculation, which is why it looked "fixed"
+     after zooming. This makes rendering deterministic across pages. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body{
   margin: 0;
   background: var(--bg);

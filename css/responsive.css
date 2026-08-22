@@ -62,6 +62,16 @@
   .nav-cta .btn--secondary{ display: none; }
   .menu-toggle{ display: inline-flex; }
 
+  /* Logo + CTA + hamburger were overflowing off-screen on narrower
+     phones (~320–375px), pushing the hamburger button past the
+     viewport edge and clipping it via body's overflow-x:hidden —
+     making the menu look like it had vanished. Tighten the gaps and
+     the primary button's padding specifically in this row. */
+  .site-header .container{ gap: 12px; }
+  .nav{ gap: 10px; }
+  .nav-cta{ gap: 10px; }
+  .nav-cta .btn--primary{ padding: 12px 18px; font-size: 13px; }
+
   .page-hero{ padding: 160px 0 60px; }
   .page-hero--compact{ padding: 150px 0 50px; }
 
@@ -93,6 +103,19 @@
   :root{ --gutter: 22px; }
   h1{ font-size: 38px; }
   h2{ font-size: 28px; }
+
+  /* The floating pill labels on split-media images (e.g. "Sites
+     Responsivos", "Alta Performance") were overflowing past the
+     right edge of the viewport on narrow phones since they overlap
+     the image via absolute positioning with a fixed left/right
+     inset. Below this width, drop them under the image in normal
+     flow instead — nothing to overflow. */
+  .split-tags{
+    position: static;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .split-media{ padding-bottom: 0; }
   .btn{ padding: 16px 24px; font-size: 14px; }
   .hero-meta{ gap: 20px 28px; }
   .stats-band{ grid-template-columns: 1fr; }
@@ -100,6 +123,9 @@
   .stat:first-child{ border-top: none; }
   .gallery-strip{ grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .logo{ font-size: 16px; }
+  .site-header .container{ gap: 8px; }
+  .nav{ gap: 8px; }
+  .nav-cta .btn--primary{ padding: 11px 14px; font-size: 12.5px; }
 }
 
 /* ----- 375px: smallest supported ----- */
